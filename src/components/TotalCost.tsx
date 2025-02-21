@@ -75,4 +75,3 @@ const TotalCost: React.FC<TotalCostProps> = ({ totalCost, userData, plantData, e
 }
 
 export default TotalCost
-

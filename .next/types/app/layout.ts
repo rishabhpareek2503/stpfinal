@@ -1,4 +1,4 @@
-// File: D:\STP-ETP CALCULATOR\real\STP-ETP\STP-Plant-Calculation-Dashboard\src\app\layout.tsx
+// File: D:\MY PROJECTS\STP-Plant-Calculation-Dashboard\src\app\layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

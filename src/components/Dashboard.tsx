@@ -12,8 +12,6 @@ import { TankData } from "../types/TankData"
 import * as TankCalculation from "../utils/TankCalculation"
 import { PlantData } from "../types/PlantData"
 import equipmentInitialState from "../data/equipmentInitialState"
-import { IndianRupee, FileDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 interface Equipment {
   id: string
@@ -240,35 +238,6 @@ const Dashboard = () => {
     setTotalCost(0);
   };
 
-  const generatePDF = async () => {
-    try {
-      const response = await fetch("/api/generate-pdf", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userData,
-          plantData,
-          tankData,
-          equipmentData,
-          totalCost,
-        }),
-      })
-
-      if (!response.ok) {
-        throw new Error("Failed to generate PDF")
-      }
-
-      const { pdfContent } = await response.json()
-      const blob = new Blob([pdfContent], { type: "text/html" })
-      const url = URL.createObjectURL(blob)
-      window.open(url, "_blank")
-    } catch (error) {
-      console.error("Error generating PDF:", error)
-    }
-  }
-
   return (
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
@@ -301,20 +270,6 @@ const Dashboard = () => {
               />
             </>
           )}
-
-          <div className="bg-white shadow-lg rounded-xl p-6 border border-gray-100">
-            <h2 className="text-2xl font-semibold mb-4">Total Cost</h2>
-            <div className="flex items-center justify-between">
-              <div className="text-3xl font-bold flex items-center">
-                <IndianRupee className="h-8 w-8 mr-2" />
-                {totalCost.toLocaleString("en-IN", { maximumFractionDigits: 2 })}
-              </div>
-              <Button onClick={generatePDF} className="flex items-center">
-                <FileDown className="h-5 w-5 mr-2" />
-                Generate PDF
-              </Button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
